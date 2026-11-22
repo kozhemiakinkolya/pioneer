@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer 8701 Launcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="launcher-container">
+
+        <!-- Верхня панель: Погода, Годинник, Статус -->
+        <header class="top-bar">
+            <div class="widget weather-widget">
+                <span class="weather-icon">⛅</span>
+                <div>
+                    <span id="temperature">+18°C</span>
+                    <span id="location">Полтава</span>
+                </div>
+            </div>
+
+            <div class="widget clock-widget">
+                <h1 id="time">12:00</h1>
+                <p id="date">Вівторок, 17 лист.</p>
+            </div>
+
+            <div class="widget status-widget">
+                <span class="status-badge bt">BT</span>
+                <span class="status-badge wifi">Wi-Fi</span>
+            </div>
+        </header>
+
+        <!-- Центральна зона: Сітка додатків + Віджети швидкості й радіо -->
+        <main class="main-content">
+            <div class="grid-menu">
+                <a href="#" class="tile" onclick="openApp('navigation')">
+                    <div class="icon">🗺️</div>
+                    <span>Навігація</span>
+                </a>
+                <a href="#" class="tile" onclick="openApp('music')">
+                    <div class="icon">🎵</div>
+                    <span>Музика</span>
+                </a>
+                <a href="#" class="tile" onclick="openApp('bluetooth')">
+                    <div class="icon">📱</div>
+                    <span>Bluetooth</span>
+                </a>
+                <a href="#" class="tile" onclick="openApp('settings')">
+                    <div class="icon">⚙️</div>
+                    <span>Налаштування</span>
+                </a>
+                <a href="#" class="tile" onclick="openApp('camera')">
+                    <div class="icon">📷</div>
+                    <span>Камера</span>
+                </a>
+                <a href="#" class="tile" onclick="openAllAppsModal()">
+                    <div class="icon">📂</div>
+                    <span>Всі програми</span>
+                </a>
+            </div>
+
+            <!-- Права колонка: Віджет швидкості + Віджет радіо -->
+            <div class="side-widgets">
+                <div class="speed-widget-card">
+                    <div class="speed-header">
+                        <span class="speed-label">GPS ШВИДКІСТЬ</span>
+                        <span id="speedStatus" class="speed-badge">GPS</span>
+                    </div>
+                    <div class="speed-display">
+                        <span id="speedValue" class="speed-number">0</span>
+                        <span class="speed-unit">км/год</span>
+                    </div>
+                </div>
+
+                <div class="radio-widget-card">
+                    <div class="radio-header" onclick="openApp('radio')">
+                        <span class="radio-icon">📻</span>
+                        <span class="radio-title">FM Радіо</span>
+                        <span class="radio-band">FM 1</span>
+                    </div>
+                    <div class="radio-display">
+                        <span id="radioFreq" class="freq-text">103.5</span>
+                        <span class="freq-unit">MHz</span>
+                    </div>
+                    <div class="radio-controls">
+                        <button onclick="radioAction('seek_down')">⏮</button>
+                        <button onclick="radioAction('step_down')"><b>-</b></button>
+                        <button class="btn-main-radio" onclick="openApp('radio')">Повний екран</button>
+                        <button onclick="radioAction('step_up')"><b>+</b></button>
+                        <button onclick="radioAction('seek_up')">⏭</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Нижня медіа-панель -->
+        <footer class="media-bar">
+            <div class="track-info">
+                <span id="track-title">🎵 Готовий до відтворення</span>
+            </div>
+            <div class="media-controls">
+                <button onclick="mediaAction('prev')">⏮</button>
+                <button onclick="mediaControl('play')">⏯</button>
+                <button onclick="mediaControl('next')">⏭</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Модальне вікно зі списком усіх додатків -->
+    <div id="appsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Встановлені додатки</h2>
+                <button class="close-btn" onclick="closeAllAppsModal()">✕</button>
+            </div>
+            <div id="appsGrid" class="apps-grid"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
